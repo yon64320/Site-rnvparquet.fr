@@ -78,6 +78,7 @@ export function Hero() {
                 textShadow: '0 2px 32px rgba(0,0,0,0.55), 0 1px 8px rgba(0,0,0,0.35)',
                 animation: 'fadeUp 0.7s cubic-bezier(0.22,1,0.36,1) 0.2s both',
                 letterSpacing: '-0.01em',
+                marginLeft: '-0.5rem',
               }}
             >
               Parqueteur à Strasbourg —<br />
@@ -206,7 +207,7 @@ export function Hero() {
                     Pose &amp; rénovation<br />de carrelage
                   </p>
                   <p className="font-sans text-xs" style={{ color: 'rgba(251,250,248,0.60)' }}>
-                    C\'est ce que je peux faire chez vous si nous continuons ensemble.
+                    Un aperçu de notre savoir-faire au service de votre projet.
                   </p>
                 </div>
               </div>
