@@ -204,7 +204,7 @@ export function Hero() {
                     ✓ Création Mathieu Garcia
                   </p>
                   <p className="font-serif text-sm mb-2 leading-snug" style={{ color: '#FBFAF8' }}>
-                    Pose &amp; rénovation<br />de carrelage
+                    Pose &amp; rénovation<br />de parquet
                   </p>
                   <p className="font-sans text-xs" style={{ color: 'rgba(251,250,248,0.60)' }}>
                     Un aperçu de notre savoir-faire au service de votre projet.
