@@ -78,7 +78,7 @@ export function Hero() {
                 textShadow: '0 2px 32px rgba(0,0,0,0.55), 0 1px 8px rgba(0,0,0,0.35)',
                 animation: 'fadeUp 0.7s cubic-bezier(0.22,1,0.36,1) 0.2s both',
                 letterSpacing: '-0.01em',
-                marginLeft: '-0.5rem',
+                marginLeft: '-1.5rem',
               }}
             >
               Parqueteur à Strasbourg —<br />
@@ -175,7 +175,7 @@ export function Hero() {
             >
               {/* Image — si elle existe */}
               <img
-                src="/images/hero-baignoire.jpg"
+                src="/images/hero-baignoire.png"
                 alt="Création Mathieu Garcia — Pose & rénovation"
                 className="absolute inset-0 w-full h-full object-cover object-center"
                 onError={(e) => {
