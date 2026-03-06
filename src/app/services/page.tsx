@@ -174,84 +174,96 @@ export default function ServicesPage() {
         </div>
       </div>
 
-      {/* Services */}
+      {/* Services — layout alternant image / texte */}
       <div className="bg-cream">
-        {SERVICES_DETAIL.map((service, index) => (
-          <section
-            key={service.id}
-            id={service.id}
-            className={`section-padding ${index % 2 === 1 ? 'bg-linen' : 'bg-cream'}`}
-            aria-labelledby={`service-title-${service.id}`}
-          >
-            <div className="container-site">
-              <div className={`grid grid-cols-1 lg:grid-cols-2 gap-14 items-start ${index % 2 === 1 ? 'lg:grid-flow-col-dense' : ''}`}>
-                {/* Content */}
-                <AnimatedSection direction={index % 2 === 0 ? 'left' : 'right'}>
-                  <span className="inline-block text-xs font-sans font-semibold tracking-widest uppercase text-forest-light mb-3">
-                    {service.subtitle}
-                  </span>
-                  <h2
-                    id={`service-title-${service.id}`}
-                    className="font-serif font-bold text-forest text-balance leading-tight mb-5"
-                    style={{ fontSize: 'clamp(1.7rem, 3vw, 2.5rem)' }}
+        {SERVICES_DETAIL.map((service, index) => {
+          const isReversed = index % 2 === 1
+          return (
+            <section
+              key={service.id}
+              id={service.id}
+              className={`section-padding ${isReversed ? 'bg-linen' : 'bg-cream'}`}
+              aria-labelledby={`service-title-${service.id}`}
+            >
+              <div className="container-site">
+                <div className={`flex flex-col ${isReversed ? 'lg:flex-row-reverse' : 'lg:flex-row'} gap-12 lg:gap-16 items-center`}>
+
+                  {/* Photo */}
+                  <AnimatedSection
+                    className="w-full lg:w-[50%] flex-shrink-0"
+                    direction={isReversed ? 'right' : 'left'}
+                    delay={100}
                   >
-                    {service.title}
-                  </h2>
-                  <p className="text-forest/65 font-sans leading-relaxed mb-7">
-                    {service.description}
-                  </p>
-
-                  <div className="mb-7">
-                    <h3 className="font-sans font-semibold text-forest text-sm uppercase tracking-wide mb-3">
-                      Ce que ça inclut
-                    </h3>
-                    <ol className="space-y-2.5">
-                      {service.steps.map((step, i) => (
-                        <li key={i} className="flex items-start gap-3">
-                          <span className="flex-shrink-0 w-7 h-7 rounded-lg bg-forest text-gold font-sans font-bold text-xs flex items-center justify-center">
-                            {String(i + 1).padStart(2, '0')}
-                          </span>
-                          <span className="text-forest/70 font-sans text-sm leading-relaxed pt-0.5">{step}</span>
-                        </li>
-                      ))}
-                    </ol>
-                  </div>
-
-                  <div>
-                    <h3 className="font-sans font-semibold text-forest text-sm uppercase tracking-wide mb-3">
-                      Idéal pour
-                    </h3>
-                    <div className="flex flex-wrap gap-2">
-                      {service.idealFor.map((use) => (
-                        <span key={use} className="text-xs font-sans bg-forest/8 text-forest rounded-xl px-3 py-1.5">
-                          {use}
-                        </span>
-                      ))}
+                    <div className="rounded-3xl aspect-[4/3] overflow-hidden shadow-soft relative">
+                      <Image
+                        src={service.photo}
+                        alt={service.alt}
+                        fill
+                        className="object-cover object-center"
+                        sizes="(max-width: 1024px) 100vw, 560px"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-forest/20 to-transparent" aria-hidden="true" />
                     </div>
-                  </div>
+                  </AnimatedSection>
 
-                  <Link href="/contact" className="btn-primary mt-8 inline-flex">
-                    Demander un devis pour ce service
-                  </Link>
-                </AnimatedSection>
+                  {/* Contenu */}
+                  <AnimatedSection
+                    className="w-full lg:w-[50%]"
+                    direction={isReversed ? 'left' : 'right'}
+                  >
+                    <span className="inline-block text-xs font-sans font-semibold tracking-widest uppercase text-forest-light mb-3">
+                      {service.subtitle}
+                    </span>
+                    <h2
+                      id={`service-title-${service.id}`}
+                      className="font-serif font-bold text-forest text-balance leading-tight mb-5"
+                      style={{ fontSize: 'clamp(1.7rem, 3vw, 2.5rem)' }}
+                    >
+                      {service.title}
+                    </h2>
+                    <p className="text-forest/65 font-sans leading-relaxed mb-7">
+                      {service.description}
+                    </p>
 
-                {/* Photo service */}
-                <AnimatedSection direction={index % 2 === 0 ? 'right' : 'left'} delay={150}>
-                  <div className="rounded-3xl aspect-[4/3] overflow-hidden shadow-soft relative">
-                    <Image
-                      src={service.photo}
-                      alt={service.alt}
-                      fill
-                      className="object-cover object-center"
-                      sizes="(max-width: 1024px) 100vw, 560px"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-forest/20 to-transparent" aria-hidden="true" />
-                  </div>
-                </AnimatedSection>
+                    <div className="mb-7">
+                      <h3 className="font-sans font-semibold text-forest text-sm uppercase tracking-wide mb-3">
+                        Ce que ça inclut
+                      </h3>
+                      <ol className="space-y-2.5">
+                        {service.steps.map((step, i) => (
+                          <li key={i} className="flex items-start gap-3">
+                            <span className="flex-shrink-0 w-7 h-7 rounded-lg bg-forest text-gold font-sans font-bold text-xs flex items-center justify-center">
+                              {String(i + 1).padStart(2, '0')}
+                            </span>
+                            <span className="text-forest/70 font-sans text-sm leading-relaxed pt-0.5">{step}</span>
+                          </li>
+                        ))}
+                      </ol>
+                    </div>
+
+                    <div>
+                      <h3 className="font-sans font-semibold text-forest text-sm uppercase tracking-wide mb-3">
+                        Idéal pour
+                      </h3>
+                      <div className="flex flex-wrap gap-2">
+                        {service.idealFor.map((use) => (
+                          <span key={use} className="text-xs font-sans bg-forest/8 text-forest rounded-xl px-3 py-1.5">
+                            {use}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+
+                    <Link href="/contact" className="btn-primary mt-8 inline-flex">
+                      Demander un devis pour ce service
+                    </Link>
+                  </AnimatedSection>
+
+                </div>
               </div>
-            </div>
-          </section>
-        ))}
+            </section>
+          )
+        })}
       </div>
 
       {/* FAQ */}
