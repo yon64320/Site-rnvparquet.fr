@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import Image from 'next/image'
-import { AnimatedSection, StaggeredChildren } from '@/components/ui/AnimatedSection'
+import { AnimatedSection } from '@/components/ui/AnimatedSection'
 import { PHOTOS } from '@/lib/photos'
 
 const SERVICES = [
@@ -9,7 +9,8 @@ const SERVICES = [
     photo: PHOTOS.pose,
     alt: 'Pose de parquet chêne massif',
     title: 'Pose de parquet',
-    description: 'Massif, contrecollé ou stratifié. Pose droite, diagonale ou en point de Hongrie.',
+    description:
+      'Massif, contrecollé ou stratifié — pose droite, diagonale ou en point de Hongrie. Nous sélectionnons les meilleures essences et maîtrisons chaque technique de pose pour un résultat impeccable et durable.',
     href: '/services#pose-parquet',
     tag: 'Neuf',
   },
@@ -18,7 +19,8 @@ const SERVICES = [
     photo: PHOTOS.renovation,
     alt: 'Rénovation de parquet ancien',
     title: 'Rénovation parquet',
-    description: 'Redonnez vie à votre parquet ancien : réparation, ponçage et finition complète.',
+    description:
+      'Redonnez vie à votre parquet ancien : réparation des lames abîmées, ponçage professionnel et finition complète. Un résultat comme neuf, sans tout remplacer, pour préserver le caractère de votre intérieur.',
     href: '/services#renovation',
     tag: 'Populaire',
   },
@@ -27,7 +29,8 @@ const SERVICES = [
     photo: PHOTOS.poncage,
     alt: 'Ponçage professionnel de parquet',
     title: 'Ponçage',
-    description: 'Résultat lisse et homogène. Machines professionnelles à aspiration intégrée.',
+    description:
+      'Résultat lisse et homogène garanti. Nos machines professionnelles à aspiration intégrée limitent la poussière et préservent votre intérieur pendant toute la durée du chantier.',
     href: '/services#poncage',
     tag: null,
   },
@@ -36,7 +39,8 @@ const SERVICES = [
     photo: PHOTOS.vitrification,
     alt: 'Vitrification et finition de parquet',
     title: 'Vitrification',
-    description: 'Vernis, huile ou cire pour protéger et sublimer. Brillant, satiné ou mat.',
+    description:
+      'Vernis, huile ou cire selon vos goûts et l\'usage de la pièce. Finition brillante, satinée ou mate pour sublimer et protéger durablement votre parquet. Rendu haut de gamme, longue durée de vie.',
     href: '/services#vitrification',
     tag: null,
   },
@@ -45,7 +49,8 @@ const SERVICES = [
     photo: PHOTOS.escalier,
     alt: 'Escalier en bois sur mesure',
     title: 'Escaliers bois',
-    description: 'Création et rénovation sur mesure. Qualité ébénisterie, chaque détail soigné.',
+    description:
+      'Création et rénovation d\'escaliers sur mesure. Qualité ébénisterie, chaque détail soigné pour un escalier qui allie beauté, solidité et durabilité — signé par 30 ans de savoir-faire.',
     href: '/services#escaliers',
     tag: 'Sur mesure',
   },
@@ -54,7 +59,8 @@ const SERVICES = [
     photo: PHOTOS.terrasse,
     alt: 'Terrasse en bois naturel',
     title: 'Terrasses bois',
-    description: 'Ipé, pin traité, douglas ou composite. Résistant aux intempéries, esthétique.',
+    description:
+      'Ipé, pin traité, douglas ou composite. Des terrasses pensées pour résister aux intempéries alsaciennes, esthétiques et durables, qui embellissent votre extérieur été comme hiver.',
     href: '/services#terrasses',
     tag: null,
   },
@@ -65,7 +71,7 @@ export function ServicesPreview() {
     <section className="section-padding bg-forest" aria-labelledby="services-title">
       <div className="container-site">
         {/* Header */}
-        <AnimatedSection className="text-center mb-14">
+        <AnimatedSection className="text-center mb-20">
           <span className="inline-block text-xs font-sans font-bold tracking-[0.15em] uppercase text-gold mb-4">
             Nos prestations
           </span>
@@ -81,82 +87,79 @@ export function ServicesPreview() {
           </p>
         </AnimatedSection>
 
-        {/* Grid — cards photo-first sur fond sombre */}
-        <StaggeredChildren
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5"
-          staggerMs={80}
-          baseDelay={80}
-        >
-          {SERVICES.map((service) => (
-            <Link
-              key={service.id}
-              href={service.href}
-              className="group relative rounded-3xl overflow-hidden flex flex-col"
-              style={{
-                background: 'rgba(31,77,53,0.25)',
-                border: '1px solid rgba(200,169,106,0.15)',
-                backdropFilter: 'blur(2px)',
-              }}
-              aria-label={service.title}
-            >
-              {/* Photo en haut — grande */}
-              <div className="relative h-52 overflow-hidden">
-                <Image
-                  src={service.photo}
-                  alt={service.alt}
-                  fill
-                  className="object-cover object-center transition-transform duration-700 group-hover:scale-[1.06]"
-                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                />
-                {/* Tag optionnel */}
-                {service.tag && (
-                  <div className="absolute top-3 left-3">
-                    <span className="text-xs font-sans font-bold tracking-widest uppercase bg-gold text-forest rounded-full px-3 py-1">
-                      {service.tag}
-                    </span>
+        {/* Alternating rows */}
+        <div className="flex flex-col">
+          {SERVICES.map((service, index) => {
+            const isReversed = index % 2 === 1
+            return (
+              <AnimatedSection key={service.id} delay={80}>
+                <div
+                  className={`flex flex-col ${isReversed ? 'lg:flex-row-reverse' : 'lg:flex-row'} gap-10 lg:gap-16 items-center py-16 lg:py-20`}
+                >
+                  {/* Image */}
+                  <div
+                    className="w-full lg:w-[55%] relative rounded-3xl overflow-hidden group flex-shrink-0"
+                    style={{ height: 'clamp(260px, 38vw, 440px)' }}
+                  >
+                    <Image
+                      src={service.photo}
+                      alt={service.alt}
+                      fill
+                      className="object-cover object-center transition-transform duration-700 group-hover:scale-[1.04]"
+                      sizes="(max-width: 1024px) 100vw, 55vw"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-forest/40 via-transparent to-transparent" />
+                    {service.tag && (
+                      <div className="absolute top-4 left-4">
+                        <span className="text-xs font-sans font-bold tracking-widest uppercase bg-gold text-forest rounded-full px-3 py-1.5">
+                          {service.tag}
+                        </span>
+                      </div>
+                    )}
                   </div>
-                )}
-                {/* Icône hover */}
-                <div className="absolute inset-0 bg-forest/40 opacity-0 group-hover:opacity-100 transition-opacity duration-400 flex items-center justify-center">
-                  <div className="w-12 h-12 rounded-full bg-gold/90 flex items-center justify-center">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" className="text-forest" aria-hidden="true">
-                      <path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                    </svg>
+
+                  {/* Text */}
+                  <div
+                    className={`w-full lg:w-[45%] flex flex-col ${isReversed ? 'lg:items-end lg:text-right' : 'lg:items-start'}`}
+                  >
+                    <span className="text-xs font-sans font-bold tracking-[0.15em] uppercase text-gold/70 mb-3">
+                      0{index + 1}
+                    </span>
+                    <h3
+                      className="font-serif font-bold text-cream leading-tight mb-4"
+                      style={{ fontSize: 'clamp(1.6rem, 3vw, 2.2rem)' }}
+                    >
+                      {service.title}
+                    </h3>
+                    <p className="text-cream/65 font-sans text-base lg:text-lg leading-relaxed mb-8">
+                      {service.description}
+                    </p>
+                    <Link
+                      href={service.href}
+                      className="inline-flex items-center gap-2 text-gold font-sans font-semibold text-sm tracking-wide uppercase hover:gap-3 transition-all duration-300"
+                    >
+                      En savoir plus
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                        <path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                      </svg>
+                    </Link>
                   </div>
                 </div>
-              </div>
 
-              {/* Contenu texte */}
-              <div className="flex flex-col gap-2 p-6 flex-1">
-                <h3 className="font-serif font-semibold text-cream text-lg group-hover:text-gold transition-colors duration-300">
-                  {service.title}
-                </h3>
-                <p className="text-cream/65 font-sans text-sm leading-relaxed flex-1">
-                  {service.description}
-                </p>
-                <span className="mt-3 inline-flex items-center gap-2 text-gold font-sans font-semibold text-xs tracking-wide uppercase group-hover:gap-3 transition-all duration-300">
-                  Découvrir
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                    <path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                  </svg>
-                </span>
-              </div>
+                {/* Divider (not after last) */}
+                {index < SERVICES.length - 1 && (
+                  <div className="border-t border-cream/8" />
+                )}
+              </AnimatedSection>
+            )
+          })}
+        </div>
 
-              {/* Bordure dorée au hover */}
-              <div
-                className="absolute inset-0 rounded-3xl pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-400"
-                style={{ boxShadow: 'inset 0 0 0 1px rgba(200,169,106,0.5)' }}
-                aria-hidden="true"
-              />
-            </Link>
-          ))}
-        </StaggeredChildren>
-
-        <AnimatedSection className="text-center mt-12" delay={200}>
+        <AnimatedSection className="text-center mt-10" delay={200}>
           <Link href="/services" className="btn-gold">
             Voir tous nos services
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-              <path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+              <path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
           </Link>
         </AnimatedSection>

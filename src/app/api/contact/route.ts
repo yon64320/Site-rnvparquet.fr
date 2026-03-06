@@ -4,7 +4,7 @@ export async function POST(req: NextRequest) {
   try {
     const body = await req.json()
 
-    const { nom, telephone, email, ville, prestation, surface, message } = body
+    const { nom, telephone, email, ville, prestation, typeDetail, logement, etage, surface, message } = body
 
     // Validate required fields
     if (!nom || !telephone || !prestation) {
@@ -22,6 +22,9 @@ export async function POST(req: NextRequest) {
     console.log(`Email: ${email || 'Non renseigné'}`)
     console.log(`Ville: ${ville || 'Non renseignée'}`)
     console.log(`Prestation: ${prestation}`)
+    console.log(`Type: ${typeDetail || 'Non renseigné'}`)
+    console.log(`Logement: ${logement || 'Non renseigné'}`)
+    console.log(`Étage: ${etage || 'Non renseigné'}`)
     console.log(`Surface: ${surface || 'Non renseignée'}`)
     console.log(`Message: ${message || 'Aucun message'}`)
     console.log('================================')
