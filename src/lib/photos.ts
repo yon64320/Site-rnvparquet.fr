@@ -12,11 +12,11 @@ export const PHOTOS = {
   // Team / artisan (à ajouter)
   artisan: PLACEHOLDER,
 
-  // Portfolio / réalisations (à ajouter)
-  realisation1: PLACEHOLDER,
-  realisation2: PLACEHOLDER,
-  realisation3: PLACEHOLDER,
-  realisation4: PLACEHOLDER,
-  realisation5: PLACEHOLDER,
-  realisation6: PLACEHOLDER,
+  // Portfolio / réalisations
+  realisation1: '/images/parquet_chene_massif_strasbourg.png',
+  realisation2: '/images/renovation_parquet_ancien_obernai.png',
+  realisation3: '/images/escalier_bois_sur_mesure_molsheim.png',
+  realisation4: '/images/terrasse_ipe_schiltigheim.png',
+  realisation5: '/images/parquet_point_hongrie_strasbourg.png',
+  realisation6: '/images/poncage_vitrification_illkirch.png',
 }
