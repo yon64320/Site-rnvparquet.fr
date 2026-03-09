@@ -69,7 +69,7 @@ export function ServicesPreview() {
 
         {/* Grid compacte */}
         <StaggeredChildren
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5"
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 items-stretch"
           staggerMs={80}
           baseDelay={80}
         >
@@ -77,7 +77,7 @@ export function ServicesPreview() {
             <Link
               key={service.id}
               href={service.href}
-              className="group relative rounded-3xl flex flex-col p-7 transition-all duration-300"
+              className="group relative rounded-3xl flex flex-col p-7 transition-all duration-300 h-full"
               style={{
                 background: 'rgba(31,77,53,0.35)',
                 border: '1px solid rgba(200,169,106,0.18)',

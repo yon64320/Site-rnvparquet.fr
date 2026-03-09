@@ -50,14 +50,14 @@ export function Hero() {
         <div className="w-full grid grid-cols-1 lg:grid-cols-[1fr_380px] gap-12 items-center py-20 lg:py-0">
 
           {/* ════ GAUCHE : Tous les textes ════ */}
-          <div className="max-w-2xl">
+          <div className="max-w-2xl text-center sm:text-left">
 
             {/* Sur-titre */}
             <div
               style={{ animation: 'fadeUp 0.6s cubic-bezier(0.22,1,0.36,1) 0.1s both' }}
             >
               <span
-                className="inline-flex items-center gap-2 font-sans font-bold tracking-[0.18em] uppercase text-xs"
+                className="inline-flex items-center justify-center sm:justify-start gap-2 font-sans font-bold tracking-[0.18em] uppercase text-xs w-full sm:w-auto"
                 style={{ color: 'rgba(184,148,78,0.95)' }}
               >
                 <span
@@ -73,12 +73,11 @@ export function Hero() {
             <h1
               className="font-serif font-bold leading-[1.05] mt-4 mb-5"
               style={{
-                fontSize: 'clamp(2.6rem, 5vw, 4.2rem)',
+                fontSize: 'clamp(1.85rem, 7vw, 4.2rem)',
                 color: '#FBFAF8',
                 textShadow: '0 2px 32px rgba(0,0,0,0.55), 0 1px 8px rgba(0,0,0,0.35)',
                 animation: 'fadeUp 0.7s cubic-bezier(0.22,1,0.36,1) 0.2s both',
                 letterSpacing: '-0.01em',
-                marginLeft: '-1.5rem',
               }}
             >
               Parqueteur à Strasbourg —<br />
@@ -92,7 +91,7 @@ export function Hero() {
 
             {/* Sous-titre */}
             <p
-              className="font-sans leading-relaxed mb-8 max-w-lg"
+              className="font-sans leading-relaxed mb-8 max-w-lg mx-auto sm:mx-0"
               style={{
                 fontSize: 'clamp(0.95rem, 1.5vw, 1.1rem)',
                 color: 'rgba(251,250,248,0.75)',
@@ -105,7 +104,7 @@ export function Hero() {
 
             {/* CTAs */}
             <div
-              className="flex flex-col sm:flex-row gap-3 mb-8"
+              className="flex flex-col sm:flex-row gap-3 mb-8 items-center sm:items-start"
               style={{ animation: 'fadeUp 0.7s cubic-bezier(0.22,1,0.36,1) 0.4s both' }}
             >
               <Link
@@ -138,7 +137,7 @@ export function Hero() {
 
             {/* Badges confiance */}
             <div
-              className="flex flex-wrap items-center gap-x-6 gap-y-2"
+              className="flex flex-wrap items-center justify-center sm:justify-start gap-x-6 gap-y-2"
               style={{ animation: 'fadeUp 0.6s cubic-bezier(0.22,1,0.36,1) 0.52s both' }}
             >
               {[

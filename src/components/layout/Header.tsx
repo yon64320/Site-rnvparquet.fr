@@ -35,7 +35,8 @@ export function Header() {
   }, [menuOpen])
 
   return (
-    <header
+    <>
+      <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ease-premium ${
         scrolled
           ? 'bg-forest/98 backdrop-blur-md shadow-soft py-3'
@@ -103,7 +104,7 @@ export function Header() {
 
           {/* Burger */}
           <button
-            className="lg:hidden w-10 h-10 flex flex-col items-center justify-center gap-1.5 text-cream"
+            className="lg:hidden w-10 h-10 flex flex-col items-center justify-center gap-1.5 text-cream relative z-[60]"
             onClick={() => setMenuOpen(!menuOpen)}
             aria-expanded={menuOpen}
             aria-label={menuOpen ? 'Fermer le menu' : 'Ouvrir le menu'}
@@ -115,13 +116,17 @@ export function Header() {
         </div>
       </div>
 
-      {/* Mobile menu */}
-      <div
-        className={`lg:hidden fixed inset-0 top-0 bg-forest z-[-1] transition-all duration-350 ease-premium ${
-          menuOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
-        }`}
-        style={{ paddingTop: scrolled ? '64px' : '72px' }}
-      >
+      </header>
+
+      {/* Mobile menu - OUTSIDE header to avoid backdrop-blur stacking context bug on iOS */}
+      {menuOpen && (
+        <div
+          className="lg:hidden fixed inset-0 z-[55] overflow-y-auto"
+          style={{
+            backgroundColor: '#0B1F15',
+            paddingTop: scrolled ? '64px' : '72px',
+          }}
+        >
         <nav className="flex flex-col p-6 gap-2" aria-label="Menu mobile">
           {NAV_LINKS.map((link, i) => {
             const isActive = pathname === link.href
@@ -162,6 +167,7 @@ export function Header() {
           </div>
         </nav>
       </div>
-    </header>
+      )}
+    </>
   )
 }

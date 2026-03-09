@@ -24,7 +24,7 @@ export default function RootLayout({
       </head>
       <body>
         <Header />
-        <main id="main-content">{children}</main>
+        <main id="main-content" className="pt-[72px]">{children}</main>
         <Footer />
         <MobileSticky />
       </body>

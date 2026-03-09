@@ -256,6 +256,45 @@ function OptionCard({
   )
 }
 
+
+function OptionCardSquare({
+  selected,
+  onClick,
+  label,
+  icon,
+}: {
+  selected: boolean
+  onClick: () => void
+  label: string
+  icon?: React.ReactNode
+}) {
+  return (
+    <button
+      type="button"
+      onClick={onClick}
+      className={`w-full rounded-2xl border p-4 transition-all duration-200 flex flex-col items-center justify-between gap-2 group min-h-[100px] ${
+        selected
+          ? 'border-gold bg-gold/10 shadow-sm'
+          : 'border-forest/20 bg-transparent hover:border-gold/50 hover:bg-forest/5'
+      }`}
+    >
+      {icon && (
+        <span className={`${selected ? 'text-gold' : 'text-forest/40 group-hover:text-gold/60'} transition-colors`}>
+          {icon}
+        </span>
+      )}
+      <span className={`font-sans font-semibold text-sm leading-tight text-center ${selected ? 'text-forest' : 'text-forest/80'}`}>
+        {label}
+      </span>
+      <span
+        className={`w-4 h-4 rounded-full border-2 flex-shrink-0 transition-all duration-200 ${
+          selected ? 'border-gold bg-gold' : 'border-forest/25'
+        }`}
+      />
+    </button>
+  )
+}
+
 function ProgressBar({ step }: { step: number }) {
   return (
     <div className="mb-8">
@@ -357,7 +396,7 @@ function Step3({ data, set }: { data: QuoteData; set: (k: keyof QuoteData, v: st
       <p className="font-sans font-semibold text-forest/80 text-xs uppercase tracking-wide mb-3">Type de logement</p>
       <div className="grid grid-cols-2 gap-3 mb-8">
         {LOGEMENTS.map((l) => (
-          <OptionCard
+          <OptionCardSquare
             key={l.value}
             selected={data.logement === l.value}
             onClick={() => { set('logement', l.value); set('logementLabel', l.label) }}
